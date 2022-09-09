@@ -1,0 +1,13 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "vite",
+        "prod": "vite build"
+    },
+    "devDependencies": {
+        "vite": "^3.0.0"
+    },
+    "dependencies": {
+
+    }
+}

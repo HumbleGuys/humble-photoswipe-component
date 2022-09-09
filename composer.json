@@ -1,0 +1,35 @@
+{
+    "name": "humble-guys/humble-photoswipe-component",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "HumblePhotoSwipeComponent\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Kim Larsson",
+            "email": "kim@humbleguys.se"
+        }
+    ],
+    "require": {
+        "php": "^8.1"
+    },
+    "require-dev": {
+        "humble-guys/humble-core": "0.0.*",
+        "laravel/pint": "^0.2.3"
+    },
+    "minimum-stability": "dev",
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "humbleCore": {
+            "providers": [
+                "HumblePhotoSwipeComponent\\ServiceProvider"
+            ]
+        }
+    }
+}
