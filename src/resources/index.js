@@ -1,3 +1,4 @@
+import 'photoswipe/style.css';
 import './css/index.css';
 
 import photoSwipe from './js/photoSwipe';
