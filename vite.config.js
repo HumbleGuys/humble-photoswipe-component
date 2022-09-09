@@ -8,8 +8,15 @@ export default defineConfig(({ command }) => {
         build: {
             manifest: true,
             outDir: 'public/resources/dist',
+
+            lib: {
+                name: "humble-photoswipe-component",
+                entry: 'src/resources/index.js',
+                fileName: 'humble-photoswipe-component'
+            },
+
             rollupOptions: {
-                input: 'src/resources/index.js'
+                input: 'src/resources/index.js',
             }
         },
 
@@ -25,6 +32,6 @@ export default defineConfig(({ command }) => {
                     }
                 }
             }
-        ]
+        ],
     }
 });

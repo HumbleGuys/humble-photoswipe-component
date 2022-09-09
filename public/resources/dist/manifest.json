@@ -1,14 +1,11 @@
 {
   "src/resources/index.js": {
-    "file": "assets/index.262348ba.js",
+    "file": "humble-photoswipe-component.umd.js",
     "src": "src/resources/index.js",
-    "isEntry": true,
-    "css": [
-      "assets/index.1201b41e.css"
-    ]
+    "isEntry": true
   },
-  "src/resources/index.css": {
-    "file": "assets/index.1201b41e.css",
-    "src": "src/resources/index.css"
+  "style.css": {
+    "file": "style.css",
+    "src": "style.css"
   }
 }

@@ -13,7 +13,7 @@
 
 @once
     @push('head')
-        <link rel="stylesheet" href="{{ asset('../vendor/humble-guys/humble-photoswipe-component/public/resources/dist/assets/index.1201b41e.css') }}">
-        <script module defer src="{{ asset('../vendor/humble-guys/humble-photoswipe-component/public/resources/dist/assets/index.262348ba.js') }}"></script>
+        <link rel="stylesheet" href="{{ asset('../vendor/humble-guys/humble-photoswipe-component/public/resources/dist/assets/style.css?v=0.0.2') }}">
+        <script module defer src="{{ asset('../vendor/humble-guys/humble-photoswipe-component/public/resources/dist/assets/humble-photoswipe-component.umd.js?v=0.0.2') }}"></script>
     @endpush   
 @endonce 
