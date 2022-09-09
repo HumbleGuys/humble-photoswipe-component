@@ -2167,7 +2167,7 @@ const de = ({ options: n = {} }) => ({
     });
   },
   initLightbox() {
-    console.log(this.$el.id), new ct({
+    new ct({
       gallery: this.$el,
       children: "a",
       pswpModule: ce,

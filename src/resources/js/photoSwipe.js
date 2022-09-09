@@ -9,8 +9,6 @@ export default ({ options = {} }) => ({
     },
 
     initLightbox () {
-        console.log(this.$el.id);
-
         const lightbox = new PhotoSwipeLightbox({
             gallery: this.$el,
             children: 'a',
