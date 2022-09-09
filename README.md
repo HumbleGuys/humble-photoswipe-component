@@ -1,0 +1,1 @@
+# humble-photoswipe-component
