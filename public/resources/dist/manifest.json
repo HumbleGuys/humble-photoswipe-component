@@ -1,14 +1,22 @@
 {
   "src/resources/index.js": {
-    "file": "assets/index.0f847ced.js",
+    "file": "assets/index.3980d468.js",
     "src": "src/resources/index.js",
     "isEntry": true,
+    "dynamicImports": [
+      "node_modules/photoswipe/dist/photoswipe.esm.js"
+    ],
     "css": [
-      "assets/index.a49c1ff4.css"
+      "assets/index.1201b41e.css"
     ]
   },
+  "node_modules/photoswipe/dist/photoswipe.esm.js": {
+    "file": "assets/photoswipe.esm.382b1873.js",
+    "src": "node_modules/photoswipe/dist/photoswipe.esm.js",
+    "isDynamicEntry": true
+  },
   "src/resources/index.css": {
-    "file": "assets/index.a49c1ff4.css",
+    "file": "assets/index.1201b41e.css",
     "src": "src/resources/index.css"
   }
 }

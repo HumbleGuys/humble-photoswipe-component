@@ -1,4 +1,5 @@
 import PhotoSwipeLightbox from 'photoswipe/lightbox';
+import PhotoSwipe from 'photoswipe';
 
 export default ({ options = {} }) => ({
     init () {
@@ -13,7 +14,7 @@ export default ({ options = {} }) => ({
         const lightbox = new PhotoSwipeLightbox({
             gallery: this.$el,
             children: 'a',
-            pswpModule: () => import('photoswipe'),
+            pswpModule: PhotoSwipe,
             ...options
         });
 
