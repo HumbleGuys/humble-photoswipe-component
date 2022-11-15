@@ -20,5 +20,11 @@
         >
             <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/7/img-200.jpg" alt="" />
         </a>
+
+        <div>
+            <button @click="open">
+                Open
+            </button>
+        </div>
     </x-photoSwipe::base>
 </x-layout>

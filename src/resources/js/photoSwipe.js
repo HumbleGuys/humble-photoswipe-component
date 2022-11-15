@@ -1,21 +1,31 @@
-import PhotoSwipeLightbox from 'photoswipe/lightbox';
-import PhotoSwipe from 'photoswipe';
+import PhotoSwipeLightbox from "photoswipe/lightbox";
+import PhotoSwipe from "photoswipe";
 
 export default ({ options = {} }) => ({
-    init () {
-        document.addEventListener('alpine:initialized', () => {
+    lightbox: null,
+    elements: null,
+
+    init() {
+        document.addEventListener("alpine:initialized", () => {
+            this.elements = this.$el.querySelectorAll("a");
             this.initLightbox();
         });
     },
 
-    initLightbox () {
-        const lightbox = new PhotoSwipeLightbox({
+    initLightbox() {
+        this.lightbox = new PhotoSwipeLightbox({
             gallery: this.$el,
-            children: 'a',
+            children: "a",
             pswpModule: PhotoSwipe,
-            ...options
+            ...options,
         });
 
-        lightbox.init();
-    }
+        this.lightbox.init();
+    },
+
+    open() {
+        if (this.elements && this.elements[0]) {
+            this.elements[0].click();
+        }
+    },
 });

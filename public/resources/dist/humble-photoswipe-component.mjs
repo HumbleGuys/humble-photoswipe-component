@@ -2161,18 +2161,23 @@ class ce extends ae {
   }
 }
 const de = ({ options: n = {} }) => ({
+  lightbox: null,
+  elements: null,
   init() {
     document.addEventListener("alpine:initialized", () => {
-      this.initLightbox();
+      this.elements = this.$el.querySelectorAll("a"), this.initLightbox();
     });
   },
   initLightbox() {
-    new ct({
+    this.lightbox = new ct({
       gallery: this.$el,
       children: "a",
       pswpModule: ce,
       ...n
-    }).init();
+    }), this.lightbox.init();
+  },
+  open() {
+    this.elements && this.elements[0] && this.elements[0].click();
   }
 });
 document.addEventListener("alpine:init", () => {
