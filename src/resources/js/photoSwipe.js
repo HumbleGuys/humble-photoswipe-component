@@ -23,9 +23,23 @@ export default ({ options = {} }) => ({
         this.lightbox.init();
     },
 
-    open() {
-        if (this.elements && this.elements[0]) {
-            this.elements[0].click();
+    open(index = 0) {
+        if (!options.dataSource) {
+            this.setDataSourceFromHtml();
         }
+
+        this.lightbox.loadAndOpen(index);
+    },
+
+    setDataSourceFromHtml() {
+        this.lightbox.options.dataSource = Array.from(this.elements).map(
+            (e) => {
+                return {
+                    src: e.href,
+                    width: e.dataset.pswpWidth,
+                    height: e.dataset.pswpHeight,
+                };
+            }
+        );
     },
 });

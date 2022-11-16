@@ -460,18 +460,18 @@ function E(n, t) {
   const e = Math.abs(n.x - t.x), i = Math.abs(n.y - t.y);
   return Math.sqrt(e * e + i * i);
 }
-function C(n, t) {
+function A(n, t) {
   return n.x === t.x && n.y === t.y;
 }
 function b(n, t, e) {
   return Math.min(Math.max(n, t), e);
 }
-function A(n, t, e) {
+function C(n, t, e) {
   let i = "translate3d(" + n + "px," + (t || 0) + "px,0)";
   return e !== void 0 && (i += " scale3d(" + e + "," + e + ",1)"), i;
 }
 function v(n, t, e, i) {
-  n.style.transform = A(t, e, i);
+  n.style.transform = C(t, e, i);
 }
 const dt = "cubic-bezier(.4,0,.22,1)";
 function U(n, t, e, i) {
@@ -780,7 +780,7 @@ class yt {
   }
   getCurrentTransform() {
     const t = this.currZoomLevel / (this.currentResolution || this.zoomLevels.initial);
-    return A(this.pan.x, this.pan.y, t);
+    return C(this.pan.x, this.pan.y, t);
   }
   _setResolution(t) {
     t !== this.currentResolution && (this.currentResolution = t, this.updateContentSize(), this.pswp.dispatch("resolutionChanged"));
@@ -894,7 +894,7 @@ const It = 0.05, Lt = 0.15;
 function B(n, t, e) {
   return n.x = (t.x + e.x) / 2, n.y = (t.y + e.y) / 2, n;
 }
-class Ct {
+class At {
   constructor(t) {
     this.gestures = t, this.pswp = this.gestures.pswp, this._startPan = {}, this._startZoomPoint = {}, this._zoomPoint = {};
   }
@@ -943,7 +943,7 @@ class Ct {
       y: i.bounds.correctPan("y", c.y)
     }, i.setZoomLevel(s);
     let d = !0;
-    if (C(c, h) && (d = !1), !d && !r && !l) {
+    if (A(c, h) && (d = !1), !d && !r && !l) {
       i._setResolution(o), i.applyCurrentZoomPan();
       return;
     }
@@ -977,7 +977,7 @@ class Ct {
 function k(n) {
   return !!n.target.closest(".pswp__container");
 }
-class At {
+class Ct {
   constructor(t) {
     this.gestures = t;
   }
@@ -1019,7 +1019,7 @@ class At {
 const bt = 10, zt = 300, xt = 25;
 class Tt {
   constructor(t) {
-    this.pswp = t, this.dragAxis = void 0, this.p1 = {}, this.p2 = {}, this.prevP1 = {}, this.prevP2 = {}, this.startP1 = {}, this.startP2 = {}, this.velocity = {}, this._lastStartP1 = {}, this._intervalP1 = {}, this._numActivePoints = 0, this._ongoingPointers = [], this._touchEventEnabled = "ontouchstart" in window, this._pointerEventEnabled = !!window.PointerEvent, this.supportsTouch = this._touchEventEnabled || this._pointerEventEnabled && navigator.maxTouchPoints > 1, this.supportsTouch || (t.options.allowPanToNext = !1), this.drag = new Pt(this), this.zoomLevels = new Ct(this), this.tapHandler = new At(this), t.on("bindEvents", () => {
+    this.pswp = t, this.dragAxis = void 0, this.p1 = {}, this.p2 = {}, this.prevP1 = {}, this.prevP2 = {}, this.startP1 = {}, this.startP2 = {}, this.velocity = {}, this._lastStartP1 = {}, this._intervalP1 = {}, this._numActivePoints = 0, this._ongoingPointers = [], this._touchEventEnabled = "ontouchstart" in window, this._pointerEventEnabled = !!window.PointerEvent, this.supportsTouch = this._touchEventEnabled || this._pointerEventEnabled && navigator.maxTouchPoints > 1, this.supportsTouch || (t.options.allowPanToNext = !1), this.drag = new Pt(this), this.zoomLevels = new At(this), this.tapHandler = new Ct(this), t.on("bindEvents", () => {
       t.events.add(t.scrollWrap, "click", (e) => this._onClick(e)), this._pointerEventEnabled ? this._bindEvents("pointer", "down", "up", "cancel") : this._touchEventEnabled ? (this._bindEvents("touch", "start", "end", "cancel"), t.scrollWrap.ontouchmove = () => {
       }, t.scrollWrap.ontouchend = () => {
       }) : this._bindEvents("mouse", "down", "up");
@@ -1050,7 +1050,7 @@ class Tt {
     !this._numActivePoints || (this._updatePoints(t, "up"), !this.pswp.dispatch("pointerUp", { originalEvent: t }).defaultPrevented && (this._numActivePoints === 0 && (this.pointerDown = !1, this._rafStopLoop(), this.isDragging ? this._finishDrag() : !this.isZooming && !this.isMultitouch && this._finishTap(t)), this._numActivePoints < 2 && this.isZooming && (this.isZooming = !1, this.zoomLevels.end(), this._numActivePoints === 1 && (this.dragAxis = null, this._updateStartPoints()))));
   }
   _rafRenderLoop() {
-    (this.isDragging || this.isZooming) && (this._updateVelocity(), this.isDragging ? C(this.p1, this.prevP1) || this.drag.change() : (!C(this.p1, this.prevP1) || !C(this.p2, this.prevP2)) && this.zoomLevels.change(), this._updatePrevPoints(), this.raf = requestAnimationFrame(this._rafRenderLoop.bind(this)));
+    (this.isDragging || this.isZooming) && (this._updateVelocity(), this.isDragging ? A(this.p1, this.prevP1) || this.drag.change() : (!A(this.p1, this.prevP1) || !A(this.p2, this.prevP2)) && this.zoomLevels.change(), this._updatePrevPoints(), this.raf = requestAnimationFrame(this._rafRenderLoop.bind(this)));
   }
   _updateVelocity(t) {
     const e = Date.now(), i = e - this._intervalTime;
@@ -1661,7 +1661,7 @@ class ie {
     ), t && (this.element.decoding = "async", this.element.alt = "", this.element.src = t, this.element.setAttribute("role", "presentation")), this.element.setAttribute("aria-hiden", "true");
   }
   setDisplayedSize(t, e) {
-    !this.element || (this.element.tagName === "IMG" ? (O(this.element, 250, "auto"), this.element.style.transformOrigin = "0 0", this.element.style.transform = A(0, 0, t / 250)) : O(this.element, t, e));
+    !this.element || (this.element.tagName === "IMG" ? (O(this.element, 250, "auto"), this.element.style.transformOrigin = "0 0", this.element.style.transform = C(0, 0, t / 250)) : O(this.element, t, e));
   }
   destroy() {
     this.element.parentNode && this.element.remove(), this.element = null;
@@ -1988,11 +1988,11 @@ class he {
       t ? (this._animateTo(
         this._cropContainer1,
         "transform",
-        A(r, a)
+        C(r, a)
       ), this._animateTo(
         this._cropContainer2,
         "transform",
-        A(l, h)
+        C(l, h)
       )) : (v(this._cropContainer1, r, a), v(this._cropContainer2, l, h));
     }
     u(s.pan, i || this._thumbBounds), s.currZoomLevel = this._thumbBounds.w / s.width, t ? this._animateTo(s.container, "transform", s.getCurrentTransform()) : s.applyCurrentZoomPan();
@@ -2121,7 +2121,7 @@ class ce extends ae {
     if (this.isDestroying)
       return;
     const e = q(this.options, this);
-    !t && C(e, this._prevViewportSize) || (u(this._prevViewportSize, e), this.dispatch("beforeResize"), u(this.viewportSize, this._prevViewportSize), this._updatePageScrollOffset(), this.dispatch("viewportSize"), this.mainScroll.resize(this.opener.isOpen), !this.hasMouse && window.matchMedia("(any-hover: hover)").matches && this.mouseDetected(), this.dispatch("resize"));
+    !t && A(e, this._prevViewportSize) || (u(this._prevViewportSize, e), this.dispatch("beforeResize"), u(this.viewportSize, this._prevViewportSize), this._updatePageScrollOffset(), this.dispatch("viewportSize"), this.mainScroll.resize(this.opener.isOpen), !this.hasMouse && window.matchMedia("(any-hover: hover)").matches && this.mouseDetected(), this.dispatch("resize"));
   }
   applyBgOpacity(t) {
     this.bgOpacity = Math.max(t, 0), this.bg.style.opacity = String(this.bgOpacity * this.options.bgOpacity);
@@ -2176,8 +2176,17 @@ const de = ({ options: n = {} }) => ({
       ...n
     }), this.lightbox.init();
   },
-  open() {
-    this.elements && this.elements[0] && this.elements[0].click();
+  open(t = 0) {
+    n.dataSource || this.setDataSourceFromHtml(), this.lightbox.loadAndOpen(t);
+  },
+  setDataSourceFromHtml() {
+    this.lightbox.options.dataSource = Array.from(this.elements).map(
+      (t) => ({
+        src: t.href,
+        width: t.dataset.pswpWidth,
+        height: t.dataset.pswpHeight
+      })
+    );
   }
 });
 document.addEventListener("alpine:init", () => {
