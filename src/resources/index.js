@@ -5,5 +5,4 @@ import photoSwipe from './js/photoSwipe';
 
 document.addEventListener('alpine:init', () => {
     window.Alpine.data('photoSwipe', photoSwipe);
-})
-
+});

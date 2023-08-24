@@ -1,55 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>PhotoSwipe component</title>
 
-        <style>
-            html,
-                body {
-                    height: 100%;
-                    margin: 0;
-                    padding: 0;
-                }
+<head>
+    <meta charset="utf-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
+    <title>PhotoSwipe component</title>
 
-                html {
-                    font-size: 10px;
-                }
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
 
-                body {
-                    font-weight: 400;
-                    color: #000;
-                    background-color: #fff;
-                    -webkit-font-smoothing: antialiased;
-                    -moz-osx-font-smoothing: grayscale;
-                    font-size: 1.8rem;
-                }
+        html {
+            font-size: 10px;
+        }
 
-                button {
-                    cursor: pointer;
-                    background-color: transparent;
-                    padding: 0;
-                    text-decoration: none;
-                    color: inherit;
-                    box-shadow: none;
-                    border: 0
-                }
+        body {
+            font-weight: 400;
+            color: #000;
+            background-color: #fff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-size: 1.8rem;
+        }
 
-                * {
-                    box-sizing: border-box;
-                }
+        button {
+            cursor: pointer;
+            background-color: transparent;
+            padding: 0;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: none;
+            border: 0
+        }
 
-                [x-cloak] {
-                    display: none
-                }
-        </style>
+        * {
+            box-sizing: border-box;
+        }
 
-        @vite(['src/resources/index.js'])
+        [x-cloak] {
+            display: none
+        }
+    </style>
 
-        <script defer src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
-    </head>
+    @vite(['src/resources/index.js'])
+
+    <script
+        defer
+        src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"
+    ></script>
+</head>
+
 <body>
     {!! $slot !!}
 </body>
+
 </html>
