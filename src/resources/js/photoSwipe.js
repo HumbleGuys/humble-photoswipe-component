@@ -51,6 +51,12 @@ export default ({ options = {} }) => ({
             }
         });
 
+        this.lightbox.on('destroy', () => {
+            this.videoPlayers.forEach((player) => player.destroy());
+
+            this.videoPlayers = [];
+        });
+
         this.lightbox.init();
     },
 
