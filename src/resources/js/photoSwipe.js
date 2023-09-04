@@ -1,11 +1,11 @@
 import PhotoSwipeLightbox from 'photoswipe/lightbox';
 import PhotoSwipe from 'photoswipe';
-import YoutubePlayer from './youtubePlayer';
+import VideoPlayer from './videoPlayer';
 
 export default ({ options = {} }) => ({
     lightbox: null,
     elements: null,
-    youtubePlayers: [],
+    videoPlayers: [],
 
     init() {
         document.addEventListener('alpine:initialized', () => {
@@ -24,69 +24,38 @@ export default ({ options = {} }) => ({
 
         this.lightbox.on('contentLoad', (e) => {
             const { content } = e;
+
             if (content.type === 'video') {
                 e.preventDefault();
 
-                const videoUrl = content.data.src;
+                const videoPlayer = new VideoPlayer({
+                    videoUrl: content.data.src,
+                    index: content.index,
+                });
 
-                const wrapper = document.createElement('div');
-                wrapper.classList = 'photoSwipe__videoItem';
+                content.element = videoPlayer.render();
 
-                const playerHolder = document.createElement('div');
-                playerHolder.classList = 'photoSwipe__videoHolder';
-
-                const playerHolderInner = document.createElement('div');
-                playerHolderInner.classList = 'photoSwipe__videoHolderInner';
-
-                const player = document.createElement('div');
-                player.classList = 'photoSwipe__video';
-                player.id = `videoModalYoutube_${content.index}`;
-
-                playerHolderInner.appendChild(player);
-
-                playerHolder.appendChild(playerHolderInner);
-
-                wrapper.appendChild(playerHolder);
-
-                content.element = wrapper;
+                this.videoPlayers.push(videoPlayer);
             }
         });
 
         this.lightbox.on('contentActivate', ({ content }) => {
             if (content.type === 'video') {
-                const id = `videoModalYoutube_${content.index}`;
-
-                const videoUrl = content.data.src;
-
-                const interval = setInterval(() => {
-                    const el = document.querySelector(`#${id}`);
-                    if (el) {
-                        this.youtubePlayers.push({
-                            id: id,
-                            instance: new YoutubePlayer(videoUrl, id),
-                        });
-
-                        clearInterval(interval);
-                    }
-                }, 100);
+                this.getCurrentVideoPlayer(content.index, content.data.src).play();
             }
         });
 
         this.lightbox.on('contentDeactivate', ({ content }) => {
             if (content.type === 'video') {
-                const id = `videoModalYoutube_${content.index}`;
-
-                const player = this.youtubePlayers.find((player) => player.id === id);
-
-                if (player) {
-                    player.instance.player.destroy();
-
-                    this.youtubePlayers.splice(this.youtubePlayers.indexOf(player), 1);
-                }
+                this.getCurrentVideoPlayer(content.index, content.data.src).destroy();
             }
         });
 
         this.lightbox.init();
+    },
+
+    getCurrentVideoPlayer(index, videoUrl) {
+        return this.videoPlayers.find((player) => player.index === index && player.videoUrl === videoUrl);
     },
 
     open(index = 0) {
