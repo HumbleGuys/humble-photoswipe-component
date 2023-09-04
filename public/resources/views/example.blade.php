@@ -46,6 +46,17 @@
             />
         </a>
 
+        <a
+            href="https://vimeo.com/734669161"
+            data-pswp-type="video"
+            target="_blank"
+        >
+            <img
+                src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/5/img-200.jpg"
+                alt=""
+            />
+        </a>
+
         <div>
             <button @click="open()">
                 Open

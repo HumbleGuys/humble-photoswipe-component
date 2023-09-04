@@ -1,3 +1,4 @@
+import VimeoPlayer from './vimeoPlayer';
 import YoutubePlayer from './youtubePlayer';
 
 export default class VideoPlayer {
@@ -5,7 +6,78 @@ export default class VideoPlayer {
         this.videoUrl = videoUrl;
         this.index = index;
         this.youtubePlayer = null;
+        this.vimeoPlayer = null;
         this.id = `photoSwipeVideoIframe_${this.index}`;
+        this.videoType = this.getVideoType();
+        this.isPlaying = false;
+    }
+
+    getVideoType() {
+        if (!this.videoUrl) {
+            return;
+        }
+
+        if (this.videoUrl.includes('youtu')) {
+            return 'youtube';
+        }
+
+        if (this.videoUrl.includes('vimeo')) {
+            return 'vimeo';
+        }
+
+        return;
+    }
+
+    play() {
+        this.tryToPlay();
+
+        if (this.isPlaying) {
+            return;
+        }
+
+        const interval = setInterval(() => {
+            this.tryToPlay();
+
+            if (this.isPlaying) {
+                clearInterval(interval);
+            }
+        }, 100);
+    }
+
+    tryToPlay() {
+        const el = document.querySelector(`#${this.id}`);
+
+        if (el) {
+            if (this.videoType === 'youtube') {
+                this.playYoutube();
+            } else if (this.videoType === 'vimeo') {
+                this.playVimeo();
+            }
+
+            this.isPlaying = true;
+        }
+    }
+
+    playYoutube() {
+        this.youtubePlayer = new YoutubePlayer(this.videoUrl, this.id);
+    }
+
+    playVimeo() {
+        this.vimeoPlayer = new VimeoPlayer(this.videoUrl, this.id);
+    }
+
+    destroy() {
+        this.isPlaying = false;
+
+        if (this.youtubePlayer) {
+            this.youtubePlayer.destroy();
+            this.youtubePlayer = null;
+        }
+
+        if (this.vimeoPlayer) {
+            this.vimeoPlayer.destroy();
+            this.vimeoPlayer = null;
+        }
     }
 
     render() {
@@ -29,23 +101,5 @@ export default class VideoPlayer {
         wrapper.appendChild(playerHolder);
 
         return wrapper;
-    }
-
-    play() {
-        const interval = setInterval(() => {
-            const el = document.querySelector(`#${this.id}`);
-
-            if (el) {
-                this.youtubePlayer = new YoutubePlayer(this.videoUrl, this.id);
-                clearInterval(interval);
-            }
-        }, 100);
-    }
-
-    destroy() {
-        if (this.youtubePlayer) {
-            this.youtubePlayer.player.destroy();
-            this.youtubePlayer = null;
-        }
     }
 }

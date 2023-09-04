@@ -25,7 +25,8 @@
     display: block;
 }
 
-.photoSwipe__video {
+.photoSwipe__video,
+.photoSwipe__video iframe {
     position: absolute;
     left: 0;
     top: 0;

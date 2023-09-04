@@ -67,4 +67,8 @@ export default class YoutubePlayer {
     stopVideo() {
         this.player.stopVideo();
     }
+
+    destroy() {
+        this.player.destroy();
+    }
 }
